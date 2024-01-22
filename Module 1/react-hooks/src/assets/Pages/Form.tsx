@@ -1,16 +1,35 @@
 import React, { useState } from 'react'
 
 const Form = () => {
-    const [name, setName] = useState('');
-    const [email, setEmail] = useState('');
-    console.log(name)
+    // const [name, setName] = useState('');
+    // const [email, setEmail] = useState('');
+
+    // handle useState in object 
+
+    const [user, setUser]  = useState({name: '', email: ''})
+    // console.log(email, name)
+    
+
+    const handleSubmit = (e : React.ChangeEvent<HTMLFormElement>) => {
+      e.preventDefault();
+      console.log(user)
+    }
+
+    const handleChange = (e : React.ChangeEvent<HTMLInputElement>) => {
+      const inputName = e.target.name;
+      const value = e.target.value;
+      setUser({...user, [inputName]: value})
+      console.log(user)
+    }
   return (
     <div>
-        <input onChange={(e)=> setName(e.target.value)} type="text" name="name" id="name" />
-        <input type="text" name="email" id="email" />
+        <form onSubmit={handleSubmit} action="">
+        <input onChange={handleChange} type="text" name="name" id="name" />
+        <input onChange={handleChange} type="text" name="email" id="email" />
         <button type="submit">Submit</button>
+        </form>
     </div>
-  )
+  ) 
 }
 
 export default Form;
