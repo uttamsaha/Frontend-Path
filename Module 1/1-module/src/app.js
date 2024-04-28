@@ -1,5 +1,6 @@
 // console.log("Hello")
 
+//using bandler to import 
 import { AnotherHello, HelloWorld } from "./another";
 import React from "react";
 import ReactDOM from 'react-dom/client'
@@ -20,6 +21,8 @@ const root = ReactDOM.createRoot(document.getElementById("root")); //creating ro
 root.render(React.createElement(App)); //rendering app
 
 
+
+// using babel 
 /*
 
 // const HelloWorld = () => {
