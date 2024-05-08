@@ -13,7 +13,6 @@ const App = () => {
       HelloWorld(),
       AnotherHello()
     );
-  
 };
 const root = ReactDOM.createRoot(document.getElementById("root")); //creating root
 

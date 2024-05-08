@@ -19,12 +19,12 @@ function App() {
     <>
       <main>
         {/* <UseRefExample/> */}
-        {/* <UseRefForm/> */}
+        <UseRefForm />
         {/* <ExampleForwardRef/> */}
-        {/* <button onClick={() => setDark(!dark)}>Click</button> */}
-        {/* <MenuList>
-          <MenuItem/>
-        </MenuList> */}
+        <button onClick={() => setDark(!dark)}>Click</button>
+        <MenuList>
+          <MenuItem />
+        </MenuList>
 
         {/* <Profile /> */}
         {/* <GameResult/> */}

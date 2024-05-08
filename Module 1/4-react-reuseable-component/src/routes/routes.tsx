@@ -11,7 +11,7 @@ const router = createBrowserRouter([
     element: <App />,
     children: [
       {
-        // index true dewai / visit korle default home visit hobe
+        // index true dewai / visit korle default home component render hobe
         index: true,
         element: <Home />,
       },
