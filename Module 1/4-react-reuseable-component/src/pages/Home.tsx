@@ -2,7 +2,9 @@ import React from 'react'
 
 const Home = () => {
   return (
-    <div>Home</div>
+    <div>
+      <button className='lg:btn-solid'>This is home btn</button>
+    </div>
   )
 }
 
