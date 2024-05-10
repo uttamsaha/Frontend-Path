@@ -1,11 +1,12 @@
-import React from 'react'
+import React from "react";
+import NormalForm from "../components/NormalForm/NormalForm";
 
 const Home = () => {
   return (
     <div>
-      <button className='lg:btn-solid'>This is home btn</button>
+      <NormalForm />
     </div>
-  )
-}
+  );
+};
 
-export default Home
+export default Home;
