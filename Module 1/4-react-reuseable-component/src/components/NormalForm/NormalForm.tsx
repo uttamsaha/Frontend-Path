@@ -1,16 +1,28 @@
 import React from "react";
-import { useForm } from "react-hook-form";
+import { FieldValue, FieldValues, useForm } from "react-hook-form";
 import Container from "../ui/Container";
 import cn from "../../utils/cn";
 import Button from "../../utils/Button";
+import { z } from "zod";
+import { zodResolver } from "@hookform/resolvers/zod";
 
+//validation usin zod
+const SignUpSchema = z.object({
+  name: z.string().min(1, {message: "Name field is required"}),
+  email: z.string().email(),
+  password: z.string().min(8,"The password Too short")
+})
+
+type TNormalForm = z.infer<typeof SignUpSchema>
 const NormalForm = () => {
-  const onSubmit = (data) => {
+  const onSubmit = (data : FieldValues) => { 
     console.log(data);
   };
 
   const double = true;
-  const { register, handleSubmit } = useForm();
+  const { register, handleSubmit, formState: {errors} } = useForm<TNormalForm>({
+    resolver: zodResolver(SignUpSchema)
+  });
   return (
     <Container>
       <form
@@ -38,6 +50,10 @@ const NormalForm = () => {
               id="name"
               {...register("name")}
             />
+            {
+              errors?.name && <span className="text-xs text-red-500">{errors?.name?.message}</span>
+            }
+            {/* {errors?.name && <span className="text-xs text-red-500">This filed is requred</span>} */}
           </div>
           <div className="w-full max-w-md">
             <label className="block" htmlFor="name">
@@ -46,9 +62,12 @@ const NormalForm = () => {
             <input
               className="w-full border"
               type="text"
-              id="name"
+              id="email"
               {...register("email")}
             />
+            {
+              errors?.email && <span className="text-xs text-red-500">{errors?.email?.message}</span>
+            }
           </div>
           <div className="w-full max-w-md">
             <label className="block" htmlFor="name">
@@ -56,12 +75,15 @@ const NormalForm = () => {
             </label>
             <input
               className="w-full border"
-              type="text"
-              id="name"
+              type="password"
+              id="password"
               {...register("password")}
             />
+            {
+              errors?.password && <span className="text-xs text-red-500">{errors?.password?.message}</span>
+            }
           </div>
-          <div className="w-full max-w-md">
+          {/* <div className="w-full max-w-md">
             <label className="block" htmlFor="name">
               Password
             </label>
@@ -74,7 +96,7 @@ const NormalForm = () => {
               <option value="">Four</option>
               <option value="">Five</option>
             </select>
-          </div>
+          </div> */}
           <div className="w-full max-w-md col-start-1 md:col-start-2 flex justify-end">
             <button className=" btn btn-primary">Submit</button>
           </div>
