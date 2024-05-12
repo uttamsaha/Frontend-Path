@@ -8,21 +8,28 @@ import { zodResolver } from "@hookform/resolvers/zod";
 
 //validation usin zod
 const SignUpSchema = z.object({
-  name: z.string().min(1, {message: "Name field is required"}),
+  name: z.string().min(1, { message: "Name field is required" }),
   email: z.string().email(),
-  password: z.string().min(8,"The password Too short")
-})
+  password: z.string().min(8, "The password Too short"),
+});
 
-type TNormalForm = z.infer<typeof SignUpSchema>
+type TNormalForm = z.infer<typeof SignUpSchema>;
 const NormalForm = () => {
-  const onSubmit = (data : FieldValues) => { 
+  const onSubmit = (data: FieldValues) => {
     console.log(data);
   };
 
   const double = true;
-  const { register, handleSubmit, formState: {errors} } = useForm<TNormalForm>({
-    resolver: zodResolver(SignUpSchema)
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+    watch,
+  } = useForm<TNormalForm>({
+    resolver: zodResolver(SignUpSchema),
   });
+
+  console.log("watch", watch("name"));
   return (
     <Container>
       <form
@@ -50,9 +57,11 @@ const NormalForm = () => {
               id="name"
               {...register("name")}
             />
-            {
-              errors?.name && <span className="text-xs text-red-500">{errors?.name?.message}</span>
-            }
+            {errors?.name && (
+              <span className="text-xs text-red-500">
+                {errors?.name?.message}
+              </span>
+            )}
             {/* {errors?.name && <span className="text-xs text-red-500">This filed is requred</span>} */}
           </div>
           <div className="w-full max-w-md">
@@ -65,9 +74,11 @@ const NormalForm = () => {
               id="email"
               {...register("email")}
             />
-            {
-              errors?.email && <span className="text-xs text-red-500">{errors?.email?.message}</span>
-            }
+            {errors?.email && (
+              <span className="text-xs text-red-500">
+                {errors?.email?.message}
+              </span>
+            )}
           </div>
           <div className="w-full max-w-md">
             <label className="block" htmlFor="name">
@@ -79,9 +90,11 @@ const NormalForm = () => {
               id="password"
               {...register("password")}
             />
-            {
-              errors?.password && <span className="text-xs text-red-500">{errors?.password?.message}</span>
-            }
+            {errors?.password && (
+              <span className="text-xs text-red-500">
+                {errors?.password?.message}
+              </span>
+            )}
           </div>
           {/* <div className="w-full max-w-md">
             <label className="block" htmlFor="name">
