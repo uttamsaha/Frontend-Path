@@ -82,6 +82,7 @@
 .btn:hover:after {
   /* transform: translate(0); */
   /* transform: scaleX(1); */
+  
   transform: scaleY(1);
   background-color: tomato;
 }
